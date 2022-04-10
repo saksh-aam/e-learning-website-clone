@@ -4,7 +4,9 @@ const registerValidation = (data) => {
   const schema = Joi.object({
     name: Joi.string().min(1).required(),
     email: Joi.string().min(8).required().email(),
-    password: Joi.string().min(8),
+    phoneno: Joi.number().min(10).max(10).required(),
+    password: Joi.string().required().min(8),
+    confpassword: Joi.string().required().min(8),
   });
 
   return schema.validate(data); // TO return only the error message

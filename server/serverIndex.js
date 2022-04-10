@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 });
 
 //Middleware
-app.use(express.json()); 
+app.use(express.json());
 
 //Route Middleware
 app.use("/api/user", authRoute);
