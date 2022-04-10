@@ -4,6 +4,7 @@ const app = express();
 
 // Import Routes
 const authRoute = require("./routes/authentication");
+const tutorialRoute = require("./routes/getCourses")
 
 app.get("/", (req, res) => {
     res.send("Server is Working");
@@ -14,6 +15,7 @@ app.use(express.json());
 
 //Route Middleware
 app.use("/api/user", authRoute);
+app.use("/all", tutorialRoute);
 
 const port = process.env.PORT || 5000;
 

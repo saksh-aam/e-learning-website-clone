@@ -3,6 +3,7 @@ import bootstrap from "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Navbar from './component/Navbar';
 import Signup from './component/Signup';
 import Login from "./component/Login";
+import Dashboard from './component/Dashboard';
 import { BrowserRouter, Route, Routes } from "react-router-dom";function App() {
   return (
     <div className="App">
@@ -16,7 +17,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";function App() {
           }/>
           <Route path="/dashboard" element={
             <div>
-              <Navbar/>
+              <Navbar />
+              <Dashboard/>
             </div>
           }/>
         </Routes>
