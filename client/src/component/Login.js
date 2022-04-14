@@ -32,6 +32,7 @@ const Login = () => {
             window.alert("Invalid credentials")
         }
         else {
+            localStorage.setItem("token", data.authtoken);
             window.alert("Login successfull");
             navigate('/dashboard');
         }

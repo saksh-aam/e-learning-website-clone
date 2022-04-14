@@ -4,7 +4,7 @@ const app = express();
 
 // Import Routes
 const authRoute = require("./routes/authentication");
-const tutorialRoute = require("./routes/getCourses")
+const tutorialRoute = require("./routes/getData")
 
 app.get("/", (req, res) => {
     res.send("Server is Working");

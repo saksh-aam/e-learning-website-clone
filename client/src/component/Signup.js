@@ -38,6 +38,7 @@ const Signup = () => {
             window.alert("Invalid registeration")
         }
         else {
+          localStorage.setItem("token", data.authtoken);
             window.alert("Registration successfull");
             navigate('./login');
         }
