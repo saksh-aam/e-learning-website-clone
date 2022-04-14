@@ -16,7 +16,7 @@ const Login = () => {
         e.preventDefault();
         const { email, password } = creds;
 
-        const res = await fetch('api/user/login', {
+        const res = await fetch('http://localhost:5000/api/user/login', {
             method: 'POST',
             headers: {
                 "Content-Type":"application/json"
@@ -32,7 +32,9 @@ const Login = () => {
             window.alert("Invalid credentials")
         }
         else {
+            console.log(email);
             localStorage.setItem("token", data.authtoken);
+            localStorage.setItem("useruniqueid", email);
             window.alert("Login successfull");
             navigate('/dashboard');
         }

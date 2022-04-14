@@ -12,12 +12,11 @@ router.get('/courses', async (req, res) => {
         }
     })
 });
-router.post('/getuser', fetchuser, async (req, res) => {
-
+router.get('/:unqid', async (req, res) => {
     try {
-        const userId = req.user.id;
-        const user = await User.findById(userId)
-        res.send(user)
+        // console.log(req.params.unqid)
+        const user = await User.find({email:req.params.unqid})
+        return res.send(user)
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error");

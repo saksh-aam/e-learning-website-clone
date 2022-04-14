@@ -49,15 +49,14 @@ router.post("/login", async(req, res) => {
     }
     else {
       const correctpswd = await bcrypt.compare(password, userLogin.password);
-      const token = await userLogin.generateAuthToken();
-
-      res.cookie("nameofCookie", token, {
-        expires: new Date(Date.now() + 25892000000),
-        httpOnly:true
-      })
-
+      
       if (correctpswd) {
-        
+        const token = await userLogin.generateAuthToken();
+  
+        res.cookie("nameofCookie", token, {
+          expires: new Date(Date.now() + 25892000000),
+          httpOnly:true
+        })
         return res.status(200).json({ message: "User logged In successfully" });
       }
       else {
