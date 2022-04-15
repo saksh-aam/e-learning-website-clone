@@ -1,29 +1,25 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/Profile.css'
+import Coursecard from './Coursecard';
 const Profile = () => {
   const [details, setDetails] = useState([{
     name: "",
     email: "",
     phoneno: "",
-    coursesTaken: []
+    courseTaken: []
   }],
   );
-    const [bool,setbool]=useState(2)
-  function timeout(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
+  const [particluarCourse, setparticluarCourse] = useState({});
+  const [bool, setbool] = useState(2)
+  
   const getuserData = async (e) => {
-    // e.preventDefault();
     const temp = localStorage.getItem('useruniqueid');
-    // console.log(temp);
-    // await timeout(2000);
     const res = await fetch(`${temp}`, {
       method: 'GET',
-      
       headers: {
         "accepts": "application/json"
       },
-
     });
     const data = await res.json();
     if (data) {
@@ -35,11 +31,9 @@ const Profile = () => {
     if (bool) {
       getuserData();
       console.log(details)
-      console.log(details[0].name)
     }
   }, [bool]);
     
-  
     return (
       <div className='profile'>
         <h1 className='data-heading'>Profile</h1>
@@ -56,16 +50,17 @@ const Profile = () => {
             <span className='label'>Phone Number</span>
             <span className='values'>{details[0].phoneno}</span>
           </div>
-          <div className='field'>
+          {/* <div className='field'>
             <span className='label'>Password</span>
             <span className='values'>{details[0].password}</span>
+          </div> */}
+          <div className='field usercourses'>
+            <span className='label sub-heading'>Course</span>
+            <span className='values'>{details[0].courseTaken.map(course => {
+              return <Coursecard courseid={course}></Coursecard>
+            })}</span>
           </div>
-          <div className='field'>
-            {/* <span className='label'>Course</span>
-            <span className='values'>{details[0].coursesTaken.map((course) => {
-              return <h3>course.Title</h3>
-            })}</span> */}
-          </div>
+          <div className='field btndiv'><button><Link to="/login" className="btn" onClick={() => { localStorage.removeItem('useruniqueid');  localStorage.removeItem('token')}}>Logout</Link></button></div>
         </div>
       </div>
     )

@@ -12,9 +12,18 @@ router.get('/courses', async (req, res) => {
         }
     })
 });
-router.get('/:unqid', async (req, res) => {
+router.get('/getparticularcourse/:courseid', async (req, res) => {
     try {
-        // console.log(req.params.unqid)
+        const usercourse = await courses.findById(req.params.courseid)
+        return res.send(usercourse)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error");
+    }
+});
+router.get('/:unqid', async (req, res) => {
+    // console.log(req.params.unqid)
+    try {
         const user = await User.find({email:req.params.unqid})
         return res.send(user)
     } catch (error) {
@@ -23,14 +32,19 @@ router.get('/:unqid', async (req, res) => {
     }
 });
 router.put('/:unqid/:courseid', async (req, res) => {
-    console.log(req.params)
     try {
-        const user = await User.findOneAndUpdateOne({ email: req.params.unqid }, {
+        const updateduser = await User.findOneAndUpdate({ email: req.params.unqid }, {
             $push: {
                 courseTaken:req.params.courseid
             }
-        }, {new:true})
-        return res.send(user)
+        }, { new: true })
+        
+        // const updatedcourse = await courses.findOneAndUpdate({ _id: req.params.courseid }, {
+        //     $push: {
+        //         userWhoEnrolled:req.params.updateduser._id
+        //     }
+        // }, { new: true })
+        return res.send(updateduser)
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Unkown Server Error");

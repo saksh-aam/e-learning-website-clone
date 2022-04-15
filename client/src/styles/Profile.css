@@ -1,7 +1,7 @@
 .profile{
     display: flex;
     width: 100vw;
-    height: 100vh;
+    height: auto;
     align-items: center;
     flex-direction: column;
     background-color: rgb(241, 241, 241);
@@ -22,4 +22,26 @@
     background-color: white;
     border-radius:15px;
     box-shadow: 2px 2px 5px 0;
+}
+.usercourses{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.sub-heading{
+    font-weight: 700;
+    font-size: 30px;
+}
+.usercourse {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 5px 0;
+}
+.course-desc{
+    font-weight: 400;
+}
+.btndiv{
+    display: flex;
+    justify-content: center;
 }

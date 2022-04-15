@@ -34,8 +34,8 @@ const Signup = () => {
         });
 
         const data = await res.json();
-        if (data.status === 422 || !data) {
-            window.alert("Invalid registeration")
+        if (data.error) {
+            window.alert(data.error)
         }
         else {
           localStorage.setItem("token", data.authtoken);
@@ -94,7 +94,7 @@ const Signup = () => {
             onChange={handleChange}
           ></input>
         </form>
-        <button className="btn btn-primary" type="submit" value="signup" onClick={storeData}>
+        <button onClick={storeData}>
           Sign Up
         </button>
         <a href="./Login">Already have an account?</a>

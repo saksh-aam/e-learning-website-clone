@@ -16,19 +16,15 @@ const Card = ({ tutorial }) => {
     }, [tutorial.startDate, tutorial.endDate]);
     
     const enrollcourse = async (e) => {
-        // e.preventDefault();
 
         try {
             const temp = localStorage.getItem('useruniqueid');
-            // console.log(temp);
-            const res = await fetch(`https://localhost:5000/enrollcourse/${temp}/${tutorial._id}`, {
+            const res = await fetch(`/enrollcourse/${temp}/${tutorial._id}`, {
                 method: 'PUT',
                 headers: {
                     "Content-Type":"application/json"
                 },
-                // body: JSON.stringify({
-                //     updatecourse:tutorial._id,
-                // })
+
             });
 
             const data = await res.json();
@@ -52,7 +48,7 @@ const Card = ({ tutorial }) => {
                   <div className='start'><span className='dates'>Start Date </span><span>{tutorial.startDate}</span></div>
                   <div className='end'><span className='dates'>End Date </span><span>{tutorial.endDate}</span></div>
                   <h5 className='status'>{coursestatus}</h5>
-                  <button onClick={(e) => { e.preventDefault(); enrollcourse(); }}>Start Learning</button>
+                  {(coursestatus==="Upcoming" || coursestatus==="Ongoing")? ((coursestatus==="Upcoming")?<button onClick={(e) => { e.preventDefault(); enrollcourse(); }}>Enroll Now</button>:<button onClick={(e) => { e.preventDefault(); enrollcourse(); }}>Start Learning</button>):<></>}
               </div>
           </div>
     </div>

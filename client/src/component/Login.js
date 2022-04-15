@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import '../styles/authstyle.css'
-import {  useNavigate } from "react-router-dom";
+import {  useNavigate,Link } from "react-router-dom";
 
 const Login = () => {
   const [creds, setCreds] = useState({
@@ -28,8 +28,8 @@ const Login = () => {
         });
 
         const data = await res.json();
-        if (data.status === 400 || !data) {
-            window.alert("Invalid credentials")
+        if (data.error) {
+            window.alert(data.error)
         }
         else {
             console.log(email);
@@ -51,7 +51,7 @@ const Login = () => {
                   <label htmlFor='password'></label>
                   <input type='text' name='password'  placeholder='Enter your password' value={creds.password} onChange={handleChange}></input>
               </form>
-              <button className="btn btn-primary" type="submit" value='login in' onClick={loginUser}>Login</button>
+              <button onClick={loginUser}>Login</button>
           </div>
     </div>
     </div>

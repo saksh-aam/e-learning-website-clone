@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: [true,'The username cannot be blank.'],
-    min: 5,
+    min: 2,
   },
   email: {
     type: String,
@@ -21,12 +21,12 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Your password cannot be blank.'],
-    min:5,
+    min:2,
   },
   confpassword: {
     type: String,
     required: [true, 'Your password cannot be blank.'],
-    min:5,
+    min:2,
   },
   courseTaken: 
     [{
