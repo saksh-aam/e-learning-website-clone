@@ -1,18 +1,23 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useState, useEffect } from 'react'
 import '../styles/cards.css'
 const Card = ({ tutorial }) => {
-    // let [coursestatus, setStatus] = useState("");
-    // useCallback(() => {
-    //     if (tutorial.startDate < Date.now()) {
-    //         setStatus("Upcoming");
-    //     }
-    //     else if (tutorial.startDate <= Date.now() && tutorial.endDate >= Date.now()) {
-    //         setStatus("Ongoing");
-    //     }
-    //     else if (tutorial.endDate > Date.now()) {
-    //         setStatus("Course ended");
-    //     }
-    // }, [tutorial.startDate, tutorial.endDate]);
+    const [courseid, setcourseid]=useState()
+    let [coursestatus, setStatus] = useState("");
+    useEffect(() => {
+        const today = new Date(Date.now());
+        if (tutorial.startDate > today.toISOString()) {
+            setStatus("Upcoming");
+        }
+        else if (tutorial.startDate <= today.toISOString() && tutorial.endDate >= today.toISOString()) {
+            setStatus("Ongoing");
+        }
+        else if (tutorial.endDate < today.toISOString()) {
+            setStatus("Course ended");
+        }
+    }, [tutorial.startDate, tutorial.endDate]);
+    
+    
+    
   return (
       <div>
           <div className='flex-container'>
@@ -21,8 +26,8 @@ const Card = ({ tutorial }) => {
               <div className='duration'>
                   <div className='start'><span className='dates'>Start Date </span><span>{tutorial.startDate}</span></div>
                   <div className='end'><span className='dates'>End Date </span><span>{tutorial.endDate}</span></div>
-                  {/* <h3>{coursestatus}</h3> */}
-                  <button>Start Learning</button>
+                  <h5 className='status'>{coursestatus}</h5>
+                  <button >Start Learning</button>
               </div>
           </div>
     </div>
