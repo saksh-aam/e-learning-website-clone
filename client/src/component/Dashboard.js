@@ -10,7 +10,7 @@ const Dashboard = () => {
     }],
     );
     useEffect(() => {
-        fetch("/all/courses")
+        fetch("http://localhost:5000/all/courses")
             .then((res) => {
                 if (res.ok) {
                     return res.json();

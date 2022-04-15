@@ -30,10 +30,8 @@ const userSchema = new mongoose.Schema({
   },
   courseTaken: 
     [{
-        course: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'course'
-        }
     }],
   tokens: [
     {

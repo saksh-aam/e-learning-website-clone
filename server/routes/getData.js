@@ -22,4 +22,18 @@ router.get('/:unqid', async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
+router.put('/:unqid/:courseid', async (req, res) => {
+    console.log(req.params)
+    try {
+        const user = await User.findOneAndUpdateOne({ email: req.params.unqid }, {
+            $push: {
+                courseTaken:req.params.courseid
+            }
+        }, {new:true})
+        return res.send(user)
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Unkown Server Error");
+    }
+});
 module.exports = router;

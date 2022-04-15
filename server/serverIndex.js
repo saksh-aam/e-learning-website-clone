@@ -17,6 +17,7 @@ app.use(express.json());
 app.use("/api/user", authRoute);
 app.use("/all", tutorialRoute);
 app.use(tutorialRoute);
+app.use("/enrollcourse",tutorialRoute);
 
 const port = process.env.PORT || 5000;
 
