@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
-
+import '../styles/Profile.css'
 const Profile = () => {
   const [details, setDetails] = useState([{
     name: "",
@@ -8,7 +8,7 @@ const Profile = () => {
     coursesTaken: []
   }],
   );
-
+    const [bool,setbool]=useState(2)
   function timeout(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
@@ -28,26 +28,44 @@ const Profile = () => {
     const data = await res.json();
     if (data) {
       setDetails(data);
+      setbool(bool-1)
     }
   }
   useEffect(() => {
-    let bool = true;
     if (bool) {
       getuserData();
       console.log(details)
-      
+      console.log(details[0].name)
     }
-      return () => {
-        bool = false;
-      }
-    }, []);
+  }, [bool]);
     
   
     return (
       <div className='profile'>
-        <h1 className='dash-heading'>Profile</h1>
-        <div className='dash-container'>
-          {details.name}
+        <h1 className='data-heading'>Profile</h1>
+        <div className='data-container'>
+          <div className='field'>
+            <span className='label'>Name</span>
+            <span className='values'>{details[0].name}</span>
+          </div>
+          <div className='field'>
+            <span className='label'>Email</span>
+            <span className='values'>{details[0].email}</span>
+          </div>
+          <div className='field'>
+            <span className='label'>Phone Number</span>
+            <span className='values'>{details[0].phoneno}</span>
+          </div>
+          <div className='field'>
+            <span className='label'>Password</span>
+            <span className='values'>{details[0].password}</span>
+          </div>
+          <div className='field'>
+            {/* <span className='label'>Course</span>
+            <span className='values'>{details[0].coursesTaken.map((course) => {
+              return <h3>course.Title</h3>
+            })}</span> */}
+          </div>
         </div>
       </div>
     )
