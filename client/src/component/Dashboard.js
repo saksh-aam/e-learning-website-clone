@@ -22,7 +22,7 @@ const Dashboard = () => {
             <h1 className='dash-heading'>Courses</h1>
           <div className='dash-container'>
               {details.map(course => {
-                    return <Card tutorial={course}></Card>
+                    return <Card key={course.Title} tutorial={course}></Card>
               })}
           </div>
     </div>

@@ -33,7 +33,6 @@ const Login = () => {
         }
         else {
             console.log(email);
-            localStorage.setItem("token", data.authtoken);
             localStorage.setItem("useruniqueid", email);
             window.alert("Login successfull");
             navigate('/dashboard');
@@ -51,7 +50,7 @@ const Login = () => {
                   <label htmlFor='password'></label>
                   <input type='text' name='password'  placeholder='Enter your password' value={creds.password} onChange={handleChange}></input>
               </form>
-              <button onClick={loginUser}>Login</button>
+                  <button onClick={loginUser}>Login</button>
           </div>
     </div>
     </div>

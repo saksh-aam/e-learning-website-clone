@@ -49,10 +49,10 @@ router.post("/login", async(req, res) => {
     }
     else {
       const correctpswd = await bcrypt.compare(password, userLogin.password);
-      
       if (correctpswd) {
         const token = await userLogin.generateAuthToken();
-  
+        console.log(token)
+        // localStorage.setItem("token",token)
         res.cookie("nameofCookie", token, {
           expires: new Date(Date.now() + 25892000000),
           httpOnly:true
@@ -60,7 +60,7 @@ router.post("/login", async(req, res) => {
         return res.status(200).json({ message: "User logged In successfully" });
       }
       else {
-        return res.status(400).json({ message: "Password Incorrect" });
+        return res.status(400).json({ error: "Password Incorrect" });
       } 
     }
   }

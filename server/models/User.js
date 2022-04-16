@@ -59,7 +59,6 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.generateAuthToken = async function () {
   try {
     let temptoken = jwt.sign({ _id: this._id }, process.env.TOKEN_SECRET);
-    localStorage.setItem('token',temptoken)
     this.tokens = this.tokens.concat({ token: temptoken });
     await this.save();
     return temptoken;

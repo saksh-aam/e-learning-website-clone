@@ -10,7 +10,6 @@ const Profile = () => {
     courseTaken: []
   }],
   );
-  const [particluarCourse, setparticluarCourse] = useState({});
   const [bool, setbool] = useState(2)
   
   const getuserData = async (e) => {
@@ -30,7 +29,7 @@ const Profile = () => {
   useEffect(() => {
     if (bool) {
       getuserData();
-      console.log(details)
+      // console.log(details)
     }
   }, [bool]);
     
@@ -57,7 +56,7 @@ const Profile = () => {
           <div className='field usercourses'>
             <span className='label sub-heading'>Course</span>
             <span className='values'>{details[0].courseTaken.map(course => {
-              return <Coursecard courseid={course}></Coursecard>
+              return <Coursecard key={course} courseid={course}></Coursecard>
             })}</span>
           </div>
           <div className='field btndiv'><button><Link to="/login" className="btn" onClick={() => { localStorage.removeItem('useruniqueid');  localStorage.removeItem('token')}}>Logout</Link></button></div>
