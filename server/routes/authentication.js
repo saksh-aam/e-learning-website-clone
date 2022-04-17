@@ -51,7 +51,7 @@ router.post("/login", async(req, res) => {
       const correctpswd = await bcrypt.compare(password, userLogin.password);
       if (correctpswd) {
         const token = await userLogin.generateAuthToken();
-//         console.log(token)
+        console.log(token)
         // localStorage.setItem("token",token)
         res.cookie("nameofCookie", token, {
           expires: new Date(Date.now() + 25892000000),
